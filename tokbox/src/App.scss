@@ -1,0 +1,459 @@
+html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+* {
+  box-sizing: inherit;
+  &:before {
+    box-sizing: inherit;
+  }
+  &:after {
+    box-sizing: inherit;
+  }
+}
+.App-header {
+  background-color: #222;
+  height: 40px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  h1 {
+    font-size: 16px;
+    font-weight: 200;
+  }
+}
+.App-logo {
+  height: 60%;
+  width: auto;
+}
+.App-main {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  .control-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 40px;
+    background-color: #000;
+    .user-control {
+      border: 2px solid #fff;
+      padding: 10px 8px;
+      border-radius: 50%;
+      margin-left: 10px;
+      cursor: pointer;
+      .fa {
+        font-size: 24px;
+        color: #fff;
+      }
+    }
+  }
+}
+.App-control-container,
+.user-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .ots-video-control {
+    width: 50px;
+    height: 50px;
+    margin: 20px 10px !important;
+    border: 2px solid white;
+    border-radius: 50%;
+    background-position: center;
+    background-color: #000;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+  .ots-video-control.audio {
+    background-image: url(https://assets.tokbox.com/solutions/images/icon-mic.png);
+    background-color: #000;
+    &:hover {
+      background-image: url(https://assets.tokbox.com/solutions/images/icon-muted-mic.png);
+    }
+  }
+  .ots-video-control.audio.muted {
+    background-image: url(https://assets.tokbox.com/solutions/images/icon-muted-mic.png);
+  }
+  .ots-video-control.video {
+    background-image: url(https://assets.tokbox.com/solutions/images/icon-video.png);
+    background-color: #000;
+  }
+  .ots-video-control.video.muted {
+    background-image: url(https://assets.tokbox.com/solutions/images/icon-no-video.png);
+  }
+  .ots-video-control.end-call {
+    background-image: url(https://assets.tokbox.com/solutions/images/icon-hang-up.png);
+    background-color: red;
+  }
+}
+.App-control-container.hidden {
+  display: none;
+}
+.App-video-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .video-section {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  .OT_video-element {
+    object-fit: contain;
+  }
+  &.video-wrapper {
+    height: calc(100vh - 90px);
+    .OT_name {
+      display: block;
+      top: 0;
+      opacity: 1;
+      background-color: #20202080;
+      left: 0;
+      padding: 0 20px;
+      width: 100%;
+      text-transform: capitalize;
+    }
+    .video-section {
+      #cameraPublisherContainer {
+        background-color: #000;
+      }
+      &.default {
+        #cameraPublisherContainer {
+          position: relative;
+          width: calc(100%);
+          height: 100%;
+          border: none;
+          top: 0;
+          right: 0;
+        }
+        #cameraSubscriberContainer {
+          width: 180px;
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          right: 20px;
+          top: 15px;
+          .OT_subscriber, > div {
+            flex-basis: auto;
+            height: 160px !important;
+            width: 100%;
+            border: 1px solid #fff;
+            margin-bottom: 8px;
+            z-index: 99;
+          }
+          .OT_video-element {
+            object-fit: cover !important;
+          }
+        }
+        &.full-width {
+          #cameraPublisherContainer {
+            width: 100% !important;
+          }
+          #cameraSubscriberContainer {
+            width: 0 !important;
+          }
+        }
+      }
+      &.horizontal {
+        .layout-container {
+          flex-direction: column;
+        }
+        #cameraPublisherContainer {
+          width: 100%;
+          height: calc(100%);
+          right: 0;
+          top: 0;
+          border: none;
+          position: relative;
+        }
+        #cameraSubscriberContainer {
+          height: 150px;
+          flex-direction: row;
+          display: flex;
+          position: absolute;
+          bottom: 8px;
+          left: 20px;
+          z-index: 99;
+          width: calc(100% - 20px);
+          .OT_subscriber, > div {
+            max-width: 200px;
+            flex-basis: 200px;
+            border: 1px solid #fff;
+            margin-right: 16px;
+          }
+        }
+      }
+      &.vertical {
+        #cameraPublisherContainer {
+          position: relative;
+          width: calc(100% - 180px);
+          height: 100%;
+          border: none;
+          top: 0;
+          right: 0;
+        }
+        #cameraSubscriberContainer {
+          width: 180px;
+          display: flex;
+          flex-direction: column;
+          .OT_subscriber, > div {
+            flex-basis: auto;
+            height: 180px !important;
+            width: 180px !important;
+          }
+          .OT_video-element {
+            object-fit: cover !important;
+          }
+        }
+      }
+      .layout-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+      }
+    }
+  }
+  .subscriber-wrapper {
+    width: 0px;
+    position: fixed;
+    right: 0;
+    overflow-x: hidden;
+    transition: 0.2s ease;
+    top: 0;
+    height: calc(100% - 90px);
+    border-left: 1px solid #000;
+    .title-sec {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      h3 {
+        margin: 0;
+        text-transform: capitalize;
+      }
+      .fas {
+        font-size: 24px;
+      }
+    }
+    .user-list-wrapper {
+      padding: 10px 0;
+      list-style: none;
+      li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 20px;
+        p {
+          margin: 0 10px 0 0;
+        }
+        .user-action {
+          display: flex;
+          button {
+            background: transparent !important;
+            box-shadow: none;
+            color: #000;
+            width: 32px;
+            height: 32px;
+            padding: 0;
+            &:focus {
+              box-shadow: none;
+            }
+            i {
+              font-size: 32px;
+            }
+          }
+          .ots-video-control {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+          }
+        }
+      }
+    }
+  }
+  .video-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+  }
+  .video-container.small {
+    position: relative;
+    // position: absolute;
+    // top: 20px;
+    // right: 20px;
+    // width: 160px;
+    // height: 96px;
+    // border: 1px solid #fcba00;
+    // z-index: 2;
+  }
+  // .video-container.small.left {
+  //   left: 20px;
+  //   border: 1px solid #00fcc2;
+  // }
+  .video-container.hidden {
+    display: none;
+  }
+  .video-container.active-gt2 {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+    .OT_subscriber {
+      margin: 0;
+      padding: 0;
+      display: inline-block;
+      font-size: 0;
+      flex-basis: 50%;
+      box-sizing: border-box;
+      width: auto !important;
+      height: auto !important;
+    }
+  }
+  .video-container.active-gt2.hidden {
+    display: none;
+  }
+  .video-container.active-gt2.active-odd {
+    .OT_subscriber {
+      &:first-child {
+        flex-basis: 100%;
+      }
+    }
+  }
+}
+.App-mask {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  color: white;
+  background: rgba(27, 134, 144, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .react-spinner {
+    position: absolute;
+  }
+  .message {
+    font-weight: 200;
+  }
+  .message.with-spinner {
+    position: absolute;
+    top: 55%;
+  }
+  .error {
+    color: red;
+  }
+  .message.button {
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: Transparent;
+    color: white;
+    font-family: sans-serif;
+    font-size: medium;
+    &:focus {
+      &:active {
+        background-image: none;
+        outline: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+    }
+    &:disabled,
+    [disabled] {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+  }
+  &.start-call-wrapper {
+    flex-direction: column;
+    form {
+      max-width: 320px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+    .md-form {
+      min-width: 280px;
+      margin-bottom: 16px;
+      input {
+        border-bottom: 2px solid #fff !important;
+        box-shadow: none !important;
+        ::placeholder {
+          color: #fff !important;
+        }
+      }
+      label {
+        color: #fff !important;
+      }
+    }
+  }
+}
+.message.button {
+  &:focus {
+    background-image: none;
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  &:active {
+    background-image: none;
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+}
+
+.App-control-container {
+  .setting-btn {
+    background-color: transparent !important;
+    padding: 0 !important;
+    box-shadow: none;
+    .fa {
+      font-size: 40px;
+    }
+  }
+  .layout-btn-wrapper {
+    button {
+      width: 24px;
+      height: 24px;
+      padding: 0;
+      background-color: transparent;
+      .vertical {
+        transform: rotate(90deg);
+      }
+    }
+  }
+}
+
+.popover {
+  &.show {
+    max-width: 320px;
+  }
+}
+
+.popover-wrapper {
+  padding: 15px;
+  select {
+    margin: 10px 0;
+  }
+}
+#controls {
+  .ots-video-control.circle.share-screen:first-child {
+    display: block;
+  }
+  .ots-video-control.circle.share-screen {
+    display: none;
+  }
+}

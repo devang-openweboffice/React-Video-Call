@@ -1,0 +1,37 @@
+{
+  "homepage": "https://eyeson-team.github.io/react-web-gui-example/",
+  "name": "eyeson-web-gui-react",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.21.1",
+    "eyeson": "^1.6.1",
+    "gh-pages": "^2.0.1",
+    "lodash": "4.17.19",
+    "react": "^16.4.1",
+    "react-beautiful-dnd": "^13.0.0",
+    "react-dom": "^16.4.1",
+    "react-scripts": "^3.4.1",
+    "rmwc": "^5.5.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

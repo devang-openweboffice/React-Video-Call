@@ -1,0 +1,150 @@
+.App {
+  height: 100vh;
+}
+
+.login-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffa69e;
+  background-image: linear-gradient(315deg, #ffa69e 0%, #5d4954 74%);
+}
+
+.login-container h1 {
+  margin: 0;
+  color: #ffa69e;
+  text-align: center;
+}
+
+.login-container button {
+  background-color: #ffa69e !important;
+}
+
+.login-container .mdc-layout-grid {
+  width: 400px;
+  border-radius: 5px;
+  background: #fff;
+  padding: 32px;
+}
+
+.App-sidebar {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.mdc-text-field--upgraded {
+  width: 100%;
+}
+
+.stream-container .mdc-layout-grid {
+  width: 100%;
+  padding: 0 !important;
+}
+.stream-container .mdc-layout-grid__inner {
+  width: 100%;
+  grid-gap: 0;
+}
+
+.stream-container .video-wrapper {
+  grid-column-end: span 12;
+  height: calc(100vh - 90px);
+}
+
+.stream-container .Video {
+  max-height: 100%;
+  background-color: #414041;
+}
+
+.rmwc-tooltip-inner .mdc-select {
+  width: 100%;
+}
+.popover-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  color: #000;
+  border-radius: 4px;
+  flex-direction: column;
+  padding: 10px 30px 20px;
+  max-width: 320px;
+}
+
+.layout-wrapper, .user-action-btn {
+  display: flex;
+  align-items: center;
+}
+
+.layout-wrapper button {
+border-radius: 0px !important;
+height: 36px !important;
+}
+
+.rmwc-tooltip-inner {
+  margin: -90px 20px;
+}
+
+.rmwc-tooltip-inner .popover-wrapper:after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  position: absolute;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 8px solid #fff;
+  left: 40px;
+  bottom: -12px;
+  transform: rotate(270deg);
+}
+
+.mdc-select__dropdown-icon {
+  width: 0px !important;
+  height: 0px !important;
+}
+
+.App-sidebar {
+  flex-flow: row nowrap;
+  height: 90px;
+  justify-content: space-between;
+  align-items: center;
+  grid-column-end: span 12 !important;
+}
+
+.App-sidebar button {
+  border: 1px solid;
+  margin: 0 16px;
+  border-radius: 50%;
+  height: 56px;
+  width: 56px;
+}
+
+.error {
+  color: red;
+  margin-top: 5px;
+}
+
+.screen-share-text {
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.screen-share-text span {
+  animation: color-change 5s infinite;
+}
+
+@keyframes color-change {
+  0% {
+    color: darkgray;
+  }
+  50% {
+    color: lightgray;
+  }
+  100% {
+    color: darkgray;
+  }
+}
